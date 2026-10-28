@@ -270,7 +270,6 @@ def report_signature(outputs, settings, chart_type, degree):
 
 def new_page(title, subtitle=''):
     page = plt.figure(figsize=PAGE_SIZE, facecolor='white')
-    page.text(0.08, 0.96, 'WEYLAND-YUTANI  /  MINE ANALYTICS', color=TEAL, fontsize=8, weight='bold')
     wrapped = textwrap.fill(str(title), width=54)
     title_size = min(17, 44 / (wrapped.count('\n') + 1))
     page.text(0.08, 0.915, wrapped, fontsize=title_size, weight='bold', va='top', color=NAVY)
@@ -359,13 +358,13 @@ def generate_report(outputs, combined, total_name, stats, results, settings,
                     chart_type, degree, loaded_at):
     buffer = BytesIO()
     counts = anomaly_counts(results)
-    with PdfPages(buffer, metadata={'Title': 'Weyland-Yutani Mining Report', 'Author': 'Mine Analytics'}) as pdf:
+    with PdfPages(buffer, metadata={'Title': 'Mine Analytics Report', 'Author': 'Mine Analytics'}) as pdf:
         number = 0
 
         def save(page):
             nonlocal number
             number += 1
-            page.text(0.08, 0.025, 'Weyland-Yutani | Production report', fontsize=7, color='#66788a')
+            page.text(0.08, 0.025, 'Mine Analytics', fontsize=7, color='#66788a')
             page.text(0.92, 0.025, f'{number}', ha='right', fontsize=8, color='#66788a')
             try:
                 pdf.savefig(page)
@@ -534,4 +533,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
